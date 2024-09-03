@@ -1,0 +1,36 @@
+- generate_guids_in_csvs:
+    source:
+    - src/data/Starfish English.csv
+    columns:
+    - guid
+- build_parts:
+  - note_models_from_yaml_part:
+      part_id: Starfish English
+      file: src/note_models/Starfish English/Starfish English.yaml
+  - headers_from_yaml_part:
+      part_id: deck_headers
+      file: src/headers/header1.yaml
+  - notes_from_csvs:
+      part_id: deck_notes
+      save_to_file: null
+      file_mappings:
+      - file: src/data/Starfish English.csv
+        note_model: Starfish English
+      note_model_mappings:
+      - note_models:
+        - Starfish English
+  - media_group_from_folder:
+      part_id: deck_media
+      source: src/media/
+      recursive: true
+- generate_crowd_anki:
+    folder: build/Starfish_English
+    notes:
+      part_id: deck_notes
+    note_models:
+      parts:
+      - part_id: Starfish English
+    headers: deck_headers
+    media:
+      parts:
+      - deck_media

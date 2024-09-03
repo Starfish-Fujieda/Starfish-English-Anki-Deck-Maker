@@ -1,0 +1,27 @@
+- build_parts:
+  - headers_from_crowd_anki:
+      part_id: deck_headers
+      source: build/Starfish_English
+  - notes_from_crowd_anki:
+      part_id: deck_notes
+      source: build/Starfish_English
+  - note_models_all_from_crowd_anki:
+      source: build/Starfish_English
+  - media_group_from_crowd_anki:
+      part_id: deck_media
+      source: build/Starfish_English
+      recursive: true
+- save_media_groups_to_folder:
+    parts:
+    - deck_media
+    folder: src/media/
+    clear_folder: true
+    recursive: true
+- generate_csvs:
+    notes: deck_notes
+    file_mappings:
+    - file: src/data/Starfish English.csv
+      note_model: Starfish English
+    note_model_mappings:
+    - note_models:
+      - Starfish English
