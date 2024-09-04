@@ -1,10 +1,13 @@
 <div class="sentence-ja">{{sentence ja}}</div>
 <div class="exa cloze-text">{{example}}</div>
 <div class="image">
-    <img src="{{image filename}}" class="clickable-image" />
+    <img
+        src="{{image filename}}"
+        class="clickable-image"
+        alt="{{sentence en}}"
+    />
 </div>
 <div class="cloze">{{type:cloze:example cloze}}</div>
-<br />
 <audio controls>
     <source src="{{sentence en blank audio filename}}" type="audio/mpeg" />
 </audio>
@@ -14,7 +17,11 @@
 <div class="sentence-ja">{{sentence ja}}</div>
 <div class="exa">{{example}}</div>
 <div class="image">
-    <img src="{{image filename}}" class="clickable-image" />
+    <img
+        src="{{image filename}}"
+        class="clickable-image"
+        alt="{{sentence en}}"
+    />
 </div>
 <div class="cloze">{{type:cloze:example cloze}}</div>
 <div class="word-ja">{{word ja}}</div>

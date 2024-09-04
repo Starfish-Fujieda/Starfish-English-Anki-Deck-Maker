@@ -3,9 +3,9 @@
     border: 3px solid #ff7f41;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #333;
+    color: #333; /* Consider a lighter color for better contrast */
     font-family: "Arial", sans-serif;
-    font-size: 14px;
+    font-size: 1rem; /* Changed from px to rem */
     padding: 10px;
     text-align: center;
 }
@@ -16,16 +16,6 @@
     margin-bottom: 0.2em;
     margin-left: auto;
     margin-right: auto;
-    #text-shadow: 1px 1px 0 #f4d1a1;
-    width: 75vw;
-}
-
-.exa {
-    color: #ffffff;
-    font-size: 1.6em;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0.5em;
     width: 75vw;
 }
 
@@ -44,9 +34,15 @@
 }
 
 .image {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     max-width: 50%;
+}
+
+.exa {
+    color: #ffffff;
+    font-size: 1.6em;
+    margin: 0.4em auto;
+    width: 75vw;
 }
 
 .cloze-text b {
@@ -60,34 +56,24 @@
     color: #ffd3bd;
     font-size: 1.5em;
     margin-top: 0.5em;
-    margin-bottom: 0.4em;
-}
-
-.ipa {
-    /* currently not used */
-    color: #757575;
-    margin-top: 0.4em;
 }
 
 #qa > audio {
-    height: 40px !important;
+    height: 40px;
     margin-bottom: 0.5em;
     color-scheme: dark;
 }
 
 .cloze {
-    /* This is the spelling correction bounding box */
-    margin-top: 1em;
+    margin-top: 0.8em;
+    margin-bottom: 1em;
 }
 
 #typeans {
-    /* This is the spelling correction and fill in the blank */
-
     background-color: #375669;
-    box-sizing: border-box;
     color: #ffffff;
-    font-family: "Noto Mono", monospace !important;
-    font-size: 1.3em !important;
+    font-family: "Noto Mono", monospace;
+    font-size: 1.3em;
     max-width: 50vw;
     padding: 3px;
     text-align: center;
@@ -113,8 +99,4 @@
 
 #typearrow {
     font-size: 1.6em;
-}
-
-code > #typeans {
-    background-color: green;
 }
