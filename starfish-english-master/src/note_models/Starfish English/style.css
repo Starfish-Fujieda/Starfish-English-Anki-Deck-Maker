@@ -13,11 +13,19 @@
 .sentence-ja {
     color: #ffd3bd;
     font-size: 1.6em;
-    #font-weight: bold;
     margin-bottom: 0.2em;
     margin-left: auto;
     margin-right: auto;
     #text-shadow: 1px 1px 0 #f4d1a1;
+    width: 75vw;
+}
+
+.exa {
+    color: #ffffff;
+    font-size: 1.6em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5em;
     width: 75vw;
 }
 
@@ -41,19 +49,6 @@
     max-width: 50%;
 }
 
-.exa {
-    color: #ffffff;
-    font-size: 1.6em;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0.4em;
-    width: 75vw;
-}
-
-#qa > .exa > b {
-    #color: #ffd3bd;
-}
-
 .cloze-text b {
     border-bottom: 2px solid #ffffff;
     color: transparent;
@@ -64,26 +59,29 @@
 .word-ja {
     color: #ffd3bd;
     font-size: 1.5em;
-    margin-top: .5em;
-    #text-shadow: 1px 1px 0 #f4d1a1;
+    margin-top: 0.5em;
+    margin-bottom: 0.4em;
 }
 
-.ipa { /* currently not used */
+.ipa {
+    /* currently not used */
     color: #757575;
     margin-top: 0.4em;
 }
 
-#qa > audio  {
+#qa > audio {
     height: 40px !important;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     color-scheme: dark;
 }
 
-.cloze { /* This is the spelling correction bounding box */
+.cloze {
+    /* This is the spelling correction bounding box */
     margin-top: 1em;
 }
 
-#typeans { /* This is the spelling correction and fill in the blank */
+#typeans {
+    /* This is the spelling correction and fill in the blank */
 
     background-color: #375669;
     box-sizing: border-box;
@@ -92,10 +90,7 @@
     font-size: 1.3em !important;
     max-width: 50vw;
     padding: 3px;
-    #outline-color: #7aacfe;
-
     text-align: center;
-    #white-space: pre-wrap;
 }
 
 .typeGood {
