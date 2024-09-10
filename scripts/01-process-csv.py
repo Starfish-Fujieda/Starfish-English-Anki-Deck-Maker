@@ -172,8 +172,12 @@ def process_csv(csv_file):
                     image_file = row[5]  # Assuming image filename is in the 6th column
 
                     # Create Example and Example Cloze
-                    example = sentence.replace(word, f"<b>{word}</b>")
-                    example_cloze = sentence.replace(word, f"{{{{c1::{word}}}}}")
+                    lower_sentence = sentence.lower()
+                    lower_word = word.lower()
+
+                    index = lower_sentence.find(lower_word)
+                    example = sentence[:index] + f"<b>{sentence[index:index+len(word)]}</b>" + sentence[index+len(word):]
+                    example_cloze = sentence[:index] + f"{{{{c1::{sentence[index:index+len(word)]}}}" + sentence[index+len(word):]
 
                     # Process Image
                     image_filename, image_ext = os.path.splitext(image_file)

@@ -4,4 +4,4 @@ import uuid
 unique_id = uuid.uuid1()
 
 # Print the UUID
-print(f'"crowdanki_uuid": "{unique_id}"')
+print(f'crowdanki_uuid: {unique_id}')
