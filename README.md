@@ -36,7 +36,7 @@ VOICES = [
 
 ![MacOS system voice setting](README-images/brainbrew_system-settings-system-voice-pulldown.jpg)
 
-In MacOS, go to System Settings --> Accessibility --> Spoken Content. Next to "System Voice" there's a pulldown menu. At the bottom of the menu, select "Manage Voices...". Make sure that the voices listed in the python script `scripts/01-process.python.py` are installed on your system. Stick with "Premium" or "Enhanced" voices and make sure they're easily understandable and don't mispronounces too many. (In the CSV file there's the column "sentence en pronunciation" that's used for TTS. It's there because sometimes you can get a word to be pronounced a little better by spelling it phonetically or creatively.)
+In MacOS, go to System Settings --> Accessibility --> Spoken Content. Next to "System Voice" there's a pulldown menu. At the bottom of the menu, select "Manage Voices...". Make sure that the voices listed in the python script `scripts/01-process.python.py` are installed on your system. Stick with "Premium" or "Enhanced" voices and make sure they're easily understandable and don't mispronounces too many words. (In the CSV file there's the column "sentence en pronunciation" that's used for TTS. It's there because sometimes you can get a word to be pronounced a little better by spelling it phonetically or creatively.)
 
 ![available MacOS system voices](README-images/brainbrew_installed-system-voices.jpg)
 
