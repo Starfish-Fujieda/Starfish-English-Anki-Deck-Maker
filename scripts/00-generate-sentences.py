@@ -62,3 +62,9 @@ with open(csv_file_path, 'r', encoding='utf-8') as csvfile, open(txt_file, 'w', 
         txtfile.write(f"Tokens used: {tokens_used}\n\n")  # Print token count
 
 print(f"Sentences generated and saved to {txt_file}")
+
+# After choosing which sentences to use, I have Claude.ai or Microsoft Copilot (formerly Bing) double check the Japanese translations. I keep forgetting the exact prompt I've used in the past, but this is what I used the most recent time.
+#
+# If a translation ends up being particulary shitty, a student will let me know, so in the end it's all good.
+#
+# I'm using these English-Japanese sentence pairs on Anki vocabulary flashcards for Japanese teens. Please review the Japanese translations. Do they sound natural? Are they humorous translations of the original English sentences? I don't want them to sound corny or condescending. It's OK for them to be dry humor, because example sentences in textbooks are always very dry and usually not funny or interesting at all. I'm trying to counteract that, and I think that sentences that sound matter-of-fact about absurd situations and are accompanied by funny AI art images depicting them, will be more memorable than typical boring sentences about boring situations.
