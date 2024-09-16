@@ -6,6 +6,7 @@ import time
 import csv
 import tempfile
 from PIL import Image
+import re
 
 # Constants
 USERNAME = "StarfishEnglish"
@@ -18,7 +19,7 @@ VOICES = [
     "Karen (Premium)",
     "Kate (Enhanced)",
     "Matilda (Premium)",
-    "Moira (Enhanced)",
+    #    "Moira (Enhanced)",
     "Nathan (Enhanced)",
     "Oliver (Enhanced)",
     "Samantha (Enhanced)",
@@ -53,13 +54,13 @@ def text_to_speech(text, aiff_filename, speed, voice):
     print(f"Converting '{text}' to AIFF with {voice}")
     subprocess.call(["say", "-v", voice, "-o", aiff_filename, "-r", str(speed), text])
 
-
 def text_to_speech_blank(text, keyword, aiff_filename, voice):
-    blank_sentence = text.replace(keyword, ", blank, ")
+    # Modified pattern to handle apostrophes within words
+    pattern = r"(?:^|[^\s\w])" + re.escape(keyword) + r"(?:$|[^\s\w])"
+    blank_sentence = re.sub(pattern, ", blank, ", text, flags=re.IGNORECASE)
     subprocess.call(
         ["say", "-v", voice, "-o", aiff_filename, "-r", "150", blank_sentence]
     )
-
 
 def check_ffmpeg():
     print("Checking if ffmpeg is installed...")
@@ -171,13 +172,22 @@ def process_csv(csv_file):
                     sentence = row[3]  # Assign sentence from row[3] (Sentence EN)
                     image_file = row[5]  # Assuming image filename is in the 6th column
 
-                    # Create Example and Example Cloze
+                    # Create Example and Example Cloze (case-insensitive, preserving original case, whole word replacement)
                     lower_sentence = sentence.lower()
                     lower_word = word.lower()
 
-                    index = lower_sentence.find(lower_word)
-                    example = sentence[:index] + f"<b>{sentence[index:index+len(word)]}</b>" + sentence[index+len(word):]
-                    example_cloze = sentence[:index] + f"{{{{c1::{sentence[index:index+len(word)]}}}" + sentence[index+len(word):]
+                    pattern = r"(?:^|[^\s\w])" + re.escape(lower_word) + r"(?:$|[^\s\w])"
+
+                    # Find all matches (with their start and end indices)
+                    matches = [(m.start(), m.end()) for m in re.finditer(pattern, lower_sentence)]
+
+                    example = sentence[:]  # Create a copy of the original sentence
+                    example_cloze = sentence[:]  # Create a copy of the original sentence
+
+                    # Iterate through matches in reverse order to avoid index issues after replacements
+                    for start, end in reversed(matches):
+                        example = example[:start] + f"<b>{sentence[start:end]}</b>" + example[end:]
+                        example_cloze = example_cloze[:start] + f"{{{{c1::{sentence[start:end]}}}" + example_cloze[end:]
 
                     # Process Image
                     image_filename, image_ext = os.path.splitext(image_file)

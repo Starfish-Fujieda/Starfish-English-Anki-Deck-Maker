@@ -2,3 +2,8 @@
 /.zed
 pyproject.toml
 /scripts/.zed
+/scripts/00-generate-sentences-real.py
+/scripts/images/
+/scripts/Jin*
+scripts/Starfish English-sentences.txt
+scripts/Starfish English.numbers
