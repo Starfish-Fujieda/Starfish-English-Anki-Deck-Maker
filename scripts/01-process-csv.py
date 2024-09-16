@@ -55,8 +55,10 @@ def text_to_speech(text, aiff_filename, speed, voice):
     subprocess.call(["say", "-v", voice, "-o", aiff_filename, "-r", str(speed), text])
 
 def text_to_speech_blank(text, keyword, aiff_filename, voice):
+    # Strip smart quotes from keyword before escaping
+    keyword = keyword.strip('“”"\'')
     # Modified pattern to handle apostrophes within words
-    pattern = r"(?:^|[^\s\w])" + re.escape(keyword) + r"(?:$|[^\s\w])"
+    pattern = r"(?:^|\b|[\"“])" + re.escape(keyword) + r"(?:\b|$|[\"”])"
     blank_sentence = re.sub(pattern, ", blank, ", text, flags=re.IGNORECASE)
     subprocess.call(
         ["say", "-v", voice, "-o", aiff_filename, "-r", "150", blank_sentence]
@@ -176,7 +178,7 @@ def process_csv(csv_file):
                     lower_sentence = sentence.lower()
                     lower_word = word.lower()
 
-                    pattern = r"(?:^|[^\s\w])" + re.escape(lower_word) + r"(?:$|[^\s\w])"
+                    pattern = r"(?:^|\b|[\"“])" + re.escape(lower_word) + r"(?:\b|$|[\"”])"
 
                     # Find all matches (with their start and end indices)
                     matches = [(m.start(), m.end()) for m in re.finditer(pattern, lower_sentence)]
@@ -184,10 +186,17 @@ def process_csv(csv_file):
                     example = sentence[:]  # Create a copy of the original sentence
                     example_cloze = sentence[:]  # Create a copy of the original sentence
 
+                    # Define the characters to strip
+                    chars_to_strip = '“—”"'
+
                     # Iterate through matches in reverse order to avoid index issues after replacements
                     for start, end in reversed(matches):
-                        example = example[:start] + f"<b>{sentence[start:end]}</b>" + example[end:]
-                        example_cloze = example_cloze[:start] + f"{{{{c1::{sentence[start:end]}}}" + example_cloze[end:]
+                        # Find the actual word in the original sentence (with correct capitalization and quotes)
+                        actual_word = sentence[start:end]
+
+                        # Replace the word in the example and example_cloze, placing quotes outside the tags
+                        example = example[:start] + f"<b>{actual_word.strip(chars_to_strip)}</b>" + example[end:]
+                        example_cloze = example_cloze[:start] + f"{{{{c1::{actual_word.strip(chars_to_strip)}}}}}" + example_cloze[end:]
 
                     # Process Image
                     image_filename, image_ext = os.path.splitext(image_file)
